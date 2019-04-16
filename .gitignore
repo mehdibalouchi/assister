@@ -115,3 +115,6 @@ typings/
 
 # build folder for agent
 packages/agent/build
+
+#/ Jetbrains idea folder
+.idea
