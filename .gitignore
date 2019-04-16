@@ -112,6 +112,8 @@ typings/
 # next.js build output
 .next
 
-
 # build folder for agent
 packages/agent/build
+
+# package-lock json of agent
+packages/agent/package-lock.json
