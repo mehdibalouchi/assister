@@ -3,6 +3,7 @@ from bert_serving.client import BertClient
 import numpy as np
 import scipy.spatial
 
+
 def normalized_correlation_coefficient(sequence, template):
     pad_size_0 = int(template.shape[0] / 2)
 
@@ -14,22 +15,24 @@ def normalized_correlation_coefficient(sequence, template):
         correlated_sequence[r] = np.corrcoef(overlapping_padded_seq, template)[0, 1]
     return correlated_sequence
 
+
 sentences = ["i",
-                 "wanna",
-                 "choose",
-                 "multiple"
-                 "rows",
-                 "from",
-                 "20th",
-                 "to",
-                 "30th",
-                 "delete",
-                 "row",
-                 "cell",
-                 "select",
-                 "format",
-                 "grab",
-                 "item"]
+             "wanna",
+             "choose",
+             "multiple",
+             "rows",
+             "from",
+             "20th",
+             "to",
+             "30th",
+             "delete",
+             "row",
+             "cell",
+             "select",
+             "format",
+             "grab",
+             "item"]
+
 
 bert_client = BertClient()
 embeddings = bert_client.encode(sentences)
@@ -54,10 +57,12 @@ corr_seq_5 = normalized_correlation_coefficient(sentence, template_5)
 corr_seq_6 = normalized_correlation_coefficient(sentence, template_6)
 corr_seq_7 = normalized_correlation_coefficient(sentence, template_7)
 
-print(np.max(corr_seq_1))
-print(np.max(corr_seq_2))
-print(np.max(corr_seq_3))
-print(np.max(corr_seq_4))
-print(np.max(corr_seq_5))
-print(np.max(corr_seq_6))
-print(np.max(corr_seq_7))
+print(' '.join(sentences[:-7]))
+print('Maximum normalized correlation coefficient between query and template')
+print('select cell', np.max(corr_seq_1))
+print('select row', np.max(corr_seq_2))
+print('delete row', np.max(corr_seq_3))
+print('delete cell', np.max(corr_seq_4))
+print('format cell', np.max(corr_seq_5))
+print('format row', np.max(corr_seq_6))
+print('grab item', np.max(corr_seq_7))

@@ -14,6 +14,7 @@ def normalized_correlation_coefficient(sequence, template):
         correlated_sequence[r] = np.corrcoef(overlapping_padded_seq, template)[0, 1]
     return correlated_sequence
 
+
 sentences = ["i wanna choose multiple rows from 20th to 30th",
              "select cell",
              "select row",

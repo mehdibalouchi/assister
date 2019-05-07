@@ -23,22 +23,22 @@ MODULE_USE = "https://tfhub.dev/google/universal-sentence-encoder/1"
 with tf.Graph().as_default():
     module_url = "https://tfhub.dev/google/nnlm-en-dim128-with-normalization/1"
     embed = hub.Module(module_url)
-    sentences = ["i",
-                 "wanna",
-                 "choose",
-                 "multiple"
-                 "rows",
-                 "from",
-                 "20th",
-                 "to",
-                 "30th",
-                 "delete",
-                 "row",
-                 "cell",
-                 "select",
-                 "format",
-                 "grab",
-                 "item"]
+    sentences = ["i",  # 0
+                 "wanna",  # 1
+                 "choose",  # 2
+                 "multiple",  # 3
+                 "rows",  # 4
+                 "from",  # 5
+                 "20th",  # 6
+                 "to",  # 7
+                 "30th",  # 8
+                 "delete",  # 9
+                 "row",  # 10
+                 "cell",  # 11
+                 "select",  # 12
+                 "format",  # 13
+                 "grab",  # 14
+                 "item"]  # 15
 
     embeddings = embed(sentences)
 
@@ -69,12 +69,13 @@ with tf.Graph().as_default():
         corr_seq_5 = normalized_correlation_coefficient(sentence, template_5)
         corr_seq_6 = normalized_correlation_coefficient(sentence, template_6)
         corr_seq_7 = normalized_correlation_coefficient(sentence, template_7)
-        corr_coefs.append(corr_seq_1,corr_seq_2,corr_seq_3,corr_seq_4,corr_seq_5,corr_seq_6, )
 
-        print(np.max(corr_seq_1))
-        print(np.max(corr_seq_2))
-        print(np.max(corr_seq_3))
-        print(np.max(corr_seq_4))
-        print(np.max(corr_seq_5))
-        print(np.max(corr_seq_6))
-        print(np.max(corr_seq_7))
+        print(' '.join(sentences[:-7]))
+        print('Maximum normalized correlation coefficient between query and template')
+        print('select cell', np.max(corr_seq_1))
+        print('select row', np.max(corr_seq_2))
+        print('delete row', np.max(corr_seq_3))
+        print('delete cell', np.max(corr_seq_4))
+        print('format cell', np.max(corr_seq_5))
+        print('format row', np.max(corr_seq_6))
+        print('grab item', np.max(corr_seq_7))
